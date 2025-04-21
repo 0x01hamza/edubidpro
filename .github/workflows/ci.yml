@@ -1,0 +1,25 @@
+name: CI - Auth Service
+
+on:
+  push:
+    paths:
+      - 'apps/auth-service/**'
+  pull_request:
+
+jobs:
+  build-auth:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/auth-service
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: npm install
+      - run: echo "Skipping tests - add test step later"
+      - run: npm run lint || echo "No linting yet"
